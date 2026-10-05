@@ -1,0 +1,79 @@
+=== start Sun Oct  4 00:00:06 KST 2026
+--- 00_install start Sun Oct  4 00:00:07 KST 2026
+--- 00_install OK (179s)
+--- 01_env start Sun Oct  4 00:03:06 KST 2026
+--- 01_env OK (34s)
+--- 10_smoke_yolo start Sun Oct  4 00:03:40 KST 2026
+/Users/kyungrae/Desktop/kamp_ai/X-ray_실험/run_all.sh: line 16: logs/10_smoke_yolo.log: No such file or directory
+!!! 10_smoke_yolo FAILED (0s) — see logs/10_smoke_yolo.log
+touch: logs/10_smoke_yolo.failed: No such file or directory
+--- 11_smoke_rfdetr start Sun Oct  4 00:03:40 KST 2026
+/Users/kyungrae/Desktop/kamp_ai/X-ray_실험/run_all.sh: line 16: logs/11_smoke_rfdetr.log: No such file or directory
+!!! 11_smoke_rfdetr FAILED (0s) — see logs/11_smoke_rfdetr.log
+touch: logs/11_smoke_rfdetr.failed: No such file or directory
+--- 12_smoke_vlm start Sun Oct  4 00:03:40 KST 2026
+/Users/kyungrae/Desktop/kamp_ai/X-ray_실험/run_all.sh: line 16: logs/12_smoke_vlm.log: No such file or directory
+!!! 12_smoke_vlm FAILED (0s) — see logs/12_smoke_vlm.log
+touch: logs/12_smoke_vlm.failed: No such file or directory
+스모크 실패 — 본 학습을 시작하지 않습니다. logs 폴더를 확인하세요.
+=== start Sun Oct  4 00:16:39 KST 2026
+--- skip 00_install (done)
+--- skip 01_env (done)
+--- 10_smoke_yolo start Sun Oct  4 00:16:39 KST 2026
+--- 10_smoke_yolo OK (18s)
+--- 11_smoke_rfdetr start Sun Oct  4 00:16:57 KST 2026
+!!! 11_smoke_rfdetr FAILED (137s) — see logs/11_smoke_rfdetr.log
+--- 12_smoke_vlm start Sun Oct  4 00:19:14 KST 2026
+--- 12_smoke_vlm OK (2003s)
+스모크 실패 — 본 학습을 시작하지 않습니다. logs 폴더를 확인하세요.
+=== start Sun Oct  4 00:53:43 KST 2026
+--- skip 00_install (done)
+--- skip 01_env (done)
+--- skip 10_smoke_yolo (done)
+--- 11_smoke_rfdetr start Sun Oct  4 00:53:43 KST 2026
+--- 11_smoke_rfdetr OK (55s)
+--- skip 12_smoke_vlm (done)
+--- 20_yolov8n start Sun Oct  4 00:54:38 KST 2026
+=== start Sun Oct  4 01:46:12 KST 2026
+--- skip 00_install (done)
+--- skip 01_env (done)
+--- skip 10_smoke_yolo (done)
+--- skip 11_smoke_rfdetr (done)
+--- skip 12_smoke_vlm (done)
+--- 20_yolov8n start Sun Oct  4 01:46:12 KST 2026
+--- 20_yolov8n OK (5037s)
+--- 21_yolo11s start Sun Oct  4 03:10:09 KST 2026
+=== start Sun Oct  4 11:29:45 KST 2026
+--- skip 00_install (done)
+--- skip 01_env (done)
+--- skip 10_smoke_yolo (done)
+--- skip 11_smoke_rfdetr (done)
+--- skip 12_smoke_vlm (done)
+--- skip 20_yolov8n (done)
+--- 21_yolo11s start Sun Oct  4 11:29:45 KST 2026
+--- 21_yolo11s OK (9752s)
+--- 30_vlm_zeroshot start Sun Oct  4 14:12:17 KST 2026
+--- 30_vlm_zeroshot OK (387s)
+--- 31_vlm_lora start Sun Oct  4 14:18:44 KST 2026
+--- 31_vlm_lora OK (7290s)
+--- 40_rfdetr_s start Sun Oct  4 16:20:14 KST 2026
+=== start Sun Oct  4 16:41:20 KST 2026
+--- skip 00_install (done)
+--- skip 01_env (done)
+--- skip 10_smoke_yolo (done)
+--- skip 11_smoke_rfdetr (done)
+--- skip 12_smoke_vlm (done)
+--- 20_yolov8n start Sun Oct  4 16:41:20 KST 2026
+--- 20_yolov8n OK (2588s)
+--- skip 21_yolo11s (done)
+--- skip 30_vlm_zeroshot (done)
+--- skip 31_vlm_lora (done)
+--- 40_rfdetr_s start Sun Oct  4 17:24:28 KST 2026
+--- 40_rfdetr_s OK (9354s)
+eval qwen25vl3b_lora
+eval qwen25vl3b_zeroshot
+eval rfdetr_s
+eval yolo11s
+eval yolov8n
+eval yolov8n_4403장
+=== all done Sun Oct  4 20:01:13 KST 2026

@@ -1,0 +1,47 @@
+{
+ "threshold_from_val": 0.35804,
+ "val": {
+  "AP50": 0.9362093550548269,
+  "AP50_95": 0.3814988107816989,
+  "TP": 175,
+  "FP": 9,
+  "FN": 8,
+  "precision": 0.9510869565217391,
+  "recall": 0.9562841530054644,
+  "F1": 0.9536784741144414,
+  "decoy_FP": 0,
+  "decoys": 184,
+  "image_detect_rate": 1.0,
+  "normal_false_alarm_rate": 0.0125,
+  "normal_FP_boxes": 1,
+  "image_AUROC": 0.9959375,
+  "n_images": 80,
+  "n_normal": 80
+ },
+ "test": {
+  "AP50": 0.9349057875398361,
+  "AP50_95": 0.3766089417772561,
+  "TP": 165,
+  "FP": 8,
+  "FN": 7,
+  "precision": 0.953757225433526,
+  "recall": 0.9593023255813954,
+  "F1": 0.9565217391304348,
+  "decoy_FP": 0,
+  "decoys": 172,
+  "image_detect_rate": 1.0,
+  "normal_false_alarm_rate": 0.0125,
+  "normal_FP_boxes": 1,
+  "image_AUROC": 1.0,
+  "n_images": 80,
+  "n_normal": 80,
+  "F1_CI95": [
+   0.9192420419254658,
+   0.9878085512782838
+  ],
+  "AP50_CI95": [
+   0.8825942811928184,
+   0.9839530830048758
+  ]
+ }
+}

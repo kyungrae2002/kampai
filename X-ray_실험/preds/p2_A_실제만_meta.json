@@ -1,0 +1,9 @@
+{
+ "exp": "A_실제만",
+ "yaml": "/Users/kyungrae/Desktop/kamp_ai/X-ray_실험/ablation/A_실제만.yaml",
+ "epochs": 30,
+ "imgsz": 640,
+ "seed": 0,
+ "train_images": 2220,
+ "train_seconds": 1270.6227209568024
+}

@@ -1,0 +1,9 @@
+{
+ "exp": "E_선택+960",
+ "yaml": "/Users/kyungrae/Desktop/kamp_ai/X-ray_실험/ablation/B_실제+이물합성.yaml",
+ "epochs": 30,
+ "imgsz": 960,
+ "seed": 0,
+ "train_images": 3580,
+ "train_seconds": 4276.03592300415
+}

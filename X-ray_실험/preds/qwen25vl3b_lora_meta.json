@@ -1,0 +1,7 @@
+{
+ "model": "Qwen2.5-VL-3B LoRA",
+ "train_samples": 1300,
+ "epochs": 2,
+ "train_seconds": 6748.205848932266,
+ "ms_per_image_mps": 1653.1525947153568
+}

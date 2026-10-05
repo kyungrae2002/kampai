@@ -1,0 +1,9 @@
+{
+ "exp": "C_실제+이물제거",
+ "yaml": "/Users/kyungrae/Desktop/kamp_ai/X-ray_실험/ablation/C_실제+이물제거.yaml",
+ "epochs": 30,
+ "imgsz": 640,
+ "seed": 0,
+ "train_images": 3012,
+ "train_seconds": 1697.0937330722809
+}

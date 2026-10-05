@@ -1,0 +1,29 @@
+=== phase2 start Sun Oct  4 20:02:48 KST 2026
+--- 50_stress_preds start Sun Oct  4 20:02:48 KST 2026
+--- 50_stress_preds OK (33s)
+--- 51_p2_A start Sun Oct  4 20:03:21 KST 2026
+--- 51_p2_A OK (1277s)
+--- 52_p2_B start Sun Oct  4 20:24:38 KST 2026
+--- 52_p2_B OK (2031s)
+--- 53_p2_C start Sun Oct  4 20:58:29 KST 2026
+--- 53_p2_C OK (1703s)
+--- 54_p2_D start Sun Oct  4 21:26:52 KST 2026
+--- 54_p2_D OK (2464s)
+A_실제만 val FN 5 AP50 0.9517
+B_실제+이물합성 val FN 5 AP50 0.9554
+C_실제+이물제거 val FN 5 AP50 0.9524
+D_전체 val FN 9 AP50 0.9399
+E 데이터: /Users/kyungrae/Desktop/kamp_ai/X-ray_실험/ablation/B_실제+이물합성.yaml
+--- 55_p2_E start Sun Oct  4 22:08:07 KST 2026
+--- 55_p2_E OK (4285s)
+--- 56_p2_F start Sun Oct  4 23:19:32 KST 2026
+--- 56_p2_F OK (2903s)
+--- 57_p2_A_seed1 start Mon Oct  5 00:07:55 KST 2026
+--- 57_p2_A_seed1 OK (1282s)
+--- 58_p2_D_seed1 start Mon Oct  5 00:29:17 KST 2026
+--- 58_p2_D_seed1 OK (2480s)
+eval p2_A_실제만_seed1
+eval p2_D_전체_seed1
+eval p2_E_선택+960
+eval p2_F_전체+동료합성
+=== phase2 all done Mon Oct  5 01:10:49 KST 2026
