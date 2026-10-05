@@ -1,0 +1,18 @@
+{
+  "repo": "/Users/kyungrae/Desktop/kamp_ai/dataset/dataset/test1/yolov3",
+  "cfg": "dataset/dataset/test1/yolov3/yolov3-spp.cfg",
+  "train_list": "training/cv/fold_5/train.txt",
+  "val_list": "training/cv/fold_5/val.txt",
+  "init_weights": "training/pretrained/darknet53.conv.74",
+  "output": "training/runs/integrated_cv/fold_5",
+  "epochs": 6,
+  "batch_size": 4,
+  "img_size": 320,
+  "workers": 0,
+  "lr": 0.001,
+  "accumulate": 4,
+  "seed": 20260929,
+  "device": "mps",
+  "torch_version": "2.14.0",
+  "device_resolved": "mps"
+}

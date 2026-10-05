@@ -1,0 +1,6 @@
+path: /Users/kyungrae/Desktop/kamp_ai/X-ray_데이터셋_통합
+train: /Users/kyungrae/Desktop/kamp_ai/X-ray_실험/ablation/A_실제만.txt
+val: 검증/images
+test: 테스트/images
+names:
+  0: defect

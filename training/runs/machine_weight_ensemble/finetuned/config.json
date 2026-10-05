@@ -1,0 +1,18 @@
+{
+  "repo": "/Users/kyungrae/Desktop/kamp_ai/dataset/dataset/test1/yolov3",
+  "cfg": "dataset/dataset/test1/yolov3/yolov3-spp.cfg",
+  "train_list": "training/cv/integrated/train.txt",
+  "val_list": null,
+  "init_weights": "training/runs/machine_weight_ensemble/ensemble.pt",
+  "output": "training/runs/machine_weight_ensemble/finetuned",
+  "epochs": 3,
+  "batch_size": 4,
+  "img_size": 320,
+  "workers": 0,
+  "lr": 0.0003,
+  "accumulate": 4,
+  "seed": 20260929,
+  "device": "mps",
+  "torch_version": "2.14.0",
+  "device_resolved": "mps"
+}
