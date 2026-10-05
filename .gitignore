@@ -1,0 +1,72 @@
+# Allowlist: keep source, reproducibility configs, and compact experiment metrics.
+# New file types are ignored unless explicitly allowed below.
+*
+!*/
+!/.gitignore
+!/README.md
+
+# Project source and executable entry points.
+!/scripts/**/*.py
+!/training/scripts/**/*.py
+!/X-ray_실험/scripts/**/*.py
+!/X-ray_실험/report/*.py
+!/X-ray_실험/colab/*.ipynb
+!/X-ray_실험/*.sh
+!/X-ray_실험/*.command
+
+# Documentation and training/dataset configuration.
+!/training/reports/*.md
+!/X-ray_실험/*.md
+!/X-ray_실험/*.yaml
+!/X-ray_실험/ablation/*.yaml
+!/X-ray_데이터셋_통합/*.md
+!/X-ray_데이터셋_통합/data.yaml
+
+# Training curves, evaluation metrics, and run configuration (no weights).
+!/training/runs/**/summary.json
+!/training/runs/**/config.json
+!/training/runs/**/history.json
+!/training/runs/**/*metrics.json
+!/training/runs/**/ensemble.json
+!/training/runs/**/raw_ensemble.json
+!/training/experiments/**/metrics/*.json
+!/training/experiments/**/summary.json
+!/training/experiments/**/fold_metrics.csv
+!/training/experiments/**/CV_5FOLD_REPORT.md
+!/training/reports/metrics_summary.csv
+!/training/cv/fold_summary.json
+!/X-ray_실험/runs/**/args.yaml
+!/X-ray_실험/runs/**/results.csv
+!/X-ray_실험/runs/**/metrics.csv
+!/X-ray_실험/runs/**/training_config.json
+!/X-ray_실험/runs/**/adapter_config.json
+!/X-ray_실험/logs/vlm_train_loss.csv
+!/X-ray_실험/analysis_stage1.json
+!/X-ray_실험/leak_ncc.json
+!/X-ray_실험/excluded_train_images.csv
+!/X-ray_실험/report/*analysis.json
+!/X-ray_실험/report/ensemble_val*.json
+!/X-ray_실험/report/baseline_yolov3_valtest.json
+!/X-ray_실험/report/policy_s1.json
+!/X-ray_데이터셋_통합/검증결과/*.json
+!/X-ray_데이터셋_통합/검증결과/*.csv
+
+# Prune local environments, caches, raw data, and private configuration.
+.git/
+.venv/
+.venv-model/
+venv/
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+.aws/
+.agents/
+.codex/
+.tmp_qc/
+.env*
+/processed/
+/dataset/
+/model/
+/_to_delete/
+/Claude outputs/
+/X-ray_데이터셋_최종/

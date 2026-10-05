@@ -1,0 +1,7 @@
+# 실험용: 통합본 5개 방법 + 6_약라벨_추가영상 (맥 절대경로)
+path: /Users/kyungrae/Desktop/kamp_ai/X-ray_데이터셋_통합
+train: /Users/kyungrae/Desktop/kamp_ai/X-ray_실험/train_list.txt  # 6개 폴더 전체 − excluded_train_images.csv
+val: 검증/images
+test: 테스트/images
+names:
+  0: defect

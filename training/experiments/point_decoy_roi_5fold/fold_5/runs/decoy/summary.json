@@ -1,0 +1,8 @@
+{
+  "best_epoch": 2,
+  "best_metric": 0.742252038697789,
+  "epochs": 2,
+  "elapsed_seconds": 227.29284596443176,
+  "images": 2324,
+  "device": "mps"
+}

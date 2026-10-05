@@ -1,0 +1,38 @@
+{
+ "val_raw": {
+  "images": 80,
+  "images_detected": 26,
+  "preds": 38,
+  "gt": 183,
+  "center_hits": 37,
+  "center_recall": 0.20218579234972678,
+  "image_rate": 0.325
+ },
+ "val_clean": {
+  "images": 80,
+  "images_detected": 0,
+  "preds": 0,
+  "gt": 183,
+  "center_hits": 0,
+  "center_recall": 0.0,
+  "image_rate": 0.0
+ },
+ "test_raw": {
+  "images": 80,
+  "images_detected": 33,
+  "preds": 59,
+  "gt": 172,
+  "center_hits": 59,
+  "center_recall": 0.3430232558139535,
+  "image_rate": 0.4125
+ },
+ "test_clean": {
+  "images": 80,
+  "images_detected": 0,
+  "preds": 0,
+  "gt": 172,
+  "center_hits": 0,
+  "center_recall": 0.0,
+  "image_rate": 0.0
+ }
+}

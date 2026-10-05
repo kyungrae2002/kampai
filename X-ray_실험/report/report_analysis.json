@@ -1,0 +1,1161 @@
+{
+ "bins": {
+  "size_px": [
+   9.486754977369232,
+   10.99998599940924
+  ],
+  "contrast": [
+   5.9042228248627024,
+   9.813370639679011
+  ],
+  "bg": [
+   93.0,
+   114.55900000000001
+  ]
+ },
+ "fail": {
+  "크기": [
+   {
+    "level": "작음",
+    "n": 117,
+    "rfdetr_s": {
+     "FN": 6,
+     "recall": 0.9487179487179487,
+     "center_recall": 1.0
+    },
+    "yolo11s": {
+     "FN": 8,
+     "recall": 0.9316239316239316,
+     "center_recall": 1.0
+    },
+    "yolov8n": {
+     "FN": 11,
+     "recall": 0.905982905982906,
+     "center_recall": 1.0
+    }
+   },
+   {
+    "level": "중간",
+    "n": 120,
+    "rfdetr_s": {
+     "FN": 0,
+     "recall": 1.0,
+     "center_recall": 1.0
+    },
+    "yolo11s": {
+     "FN": 2,
+     "recall": 0.9833333333333333,
+     "center_recall": 1.0
+    },
+    "yolov8n": {
+     "FN": 0,
+     "recall": 1.0,
+     "center_recall": 1.0
+    }
+   },
+   {
+    "level": "큼",
+    "n": 118,
+    "rfdetr_s": {
+     "FN": 1,
+     "recall": 0.9915254237288136,
+     "center_recall": 1.0
+    },
+    "yolo11s": {
+     "FN": 0,
+     "recall": 1.0,
+     "center_recall": 1.0
+    },
+    "yolov8n": {
+     "FN": 4,
+     "recall": 0.9661016949152542,
+     "center_recall": 1.0
+    }
+   }
+  ],
+  "대비": [
+   {
+    "level": "낮음",
+    "n": 118,
+    "rfdetr_s": {
+     "FN": 3,
+     "recall": 0.9745762711864406,
+     "center_recall": 1.0
+    },
+    "yolo11s": {
+     "FN": 6,
+     "recall": 0.9491525423728814,
+     "center_recall": 1.0
+    },
+    "yolov8n": {
+     "FN": 6,
+     "recall": 0.9491525423728814,
+     "center_recall": 1.0
+    }
+   },
+   {
+    "level": "중간",
+    "n": 119,
+    "rfdetr_s": {
+     "FN": 1,
+     "recall": 0.9915966386554622,
+     "center_recall": 1.0
+    },
+    "yolo11s": {
+     "FN": 1,
+     "recall": 0.9915966386554622,
+     "center_recall": 1.0
+    },
+    "yolov8n": {
+     "FN": 2,
+     "recall": 0.9831932773109243,
+     "center_recall": 1.0
+    }
+   },
+   {
+    "level": "높음",
+    "n": 118,
+    "rfdetr_s": {
+     "FN": 3,
+     "recall": 0.9745762711864406,
+     "center_recall": 1.0
+    },
+    "yolo11s": {
+     "FN": 3,
+     "recall": 0.9745762711864406,
+     "center_recall": 1.0
+    },
+    "yolov8n": {
+     "FN": 7,
+     "recall": 0.940677966101695,
+     "center_recall": 1.0
+    }
+   }
+  ],
+  "배경 밝기": [
+   {
+    "level": "어두운 배경",
+    "n": 113,
+    "rfdetr_s": {
+     "FN": 2,
+     "recall": 0.9823008849557522,
+     "center_recall": 1.0
+    },
+    "yolo11s": {
+     "FN": 3,
+     "recall": 0.9734513274336283,
+     "center_recall": 1.0
+    },
+    "yolov8n": {
+     "FN": 0,
+     "recall": 1.0,
+     "center_recall": 1.0
+    }
+   },
+   {
+    "level": "중간 배경",
+    "n": 124,
+    "rfdetr_s": {
+     "FN": 2,
+     "recall": 0.9838709677419355,
+     "center_recall": 1.0
+    },
+    "yolo11s": {
+     "FN": 4,
+     "recall": 0.967741935483871,
+     "center_recall": 1.0
+    },
+    "yolov8n": {
+     "FN": 6,
+     "recall": 0.9516129032258065,
+     "center_recall": 1.0
+    }
+   },
+   {
+    "level": "밝은 배경",
+    "n": 118,
+    "rfdetr_s": {
+     "FN": 3,
+     "recall": 0.9745762711864406,
+     "center_recall": 1.0
+    },
+    "yolo11s": {
+     "FN": 3,
+     "recall": 0.9745762711864406,
+     "center_recall": 1.0
+    },
+    "yolov8n": {
+     "FN": 9,
+     "recall": 0.923728813559322,
+     "center_recall": 1.0
+    }
+   }
+  ],
+  "위치": [
+   {
+    "level": "가장자리(<25px)",
+    "n": 0,
+    "rfdetr_s": {
+     "FN": 0,
+     "recall": null,
+     "center_recall": null
+    },
+    "yolo11s": {
+     "FN": 0,
+     "recall": null,
+     "center_recall": null
+    },
+    "yolov8n": {
+     "FN": 0,
+     "recall": null,
+     "center_recall": null
+    }
+   },
+   {
+    "level": "내부",
+    "n": 355,
+    "rfdetr_s": {
+     "FN": 7,
+     "recall": 0.9802816901408451,
+     "center_recall": 1.0
+    },
+    "yolo11s": {
+     "FN": 10,
+     "recall": 0.971830985915493,
+     "center_recall": 1.0
+    },
+    "yolov8n": {
+     "FN": 15,
+     "recall": 0.9577464788732394,
+     "center_recall": 1.0
+    }
+   }
+  ],
+  "형상": [
+   {
+    "level": "정방형",
+    "n": 321,
+    "rfdetr_s": {
+     "FN": 5,
+     "recall": 0.9844236760124611,
+     "center_recall": 1.0
+    },
+    "yolo11s": {
+     "FN": 9,
+     "recall": 0.9719626168224299,
+     "center_recall": 1.0
+    },
+    "yolov8n": {
+     "FN": 14,
+     "recall": 0.956386292834891,
+     "center_recall": 1.0
+    }
+   },
+   {
+    "level": "길쭉함(≥1.4)",
+    "n": 34,
+    "rfdetr_s": {
+     "FN": 2,
+     "recall": 0.9411764705882353,
+     "center_recall": 1.0
+    },
+    "yolo11s": {
+     "FN": 1,
+     "recall": 0.9705882352941176,
+     "center_recall": 1.0
+    },
+    "yolov8n": {
+     "FN": 1,
+     "recall": 0.9705882352941176,
+     "center_recall": 1.0
+    }
+   }
+  ],
+  "호기": [
+   {
+    "level": "1호기",
+    "n": 122,
+    "rfdetr_s": {
+     "FN": 4,
+     "recall": 0.9672131147540983,
+     "center_recall": 1.0
+    },
+    "yolo11s": {
+     "FN": 4,
+     "recall": 0.9672131147540983,
+     "center_recall": 1.0
+    },
+    "yolov8n": {
+     "FN": 10,
+     "recall": 0.9180327868852459,
+     "center_recall": 1.0
+    }
+   },
+   {
+    "level": "2호기",
+    "n": 111,
+    "rfdetr_s": {
+     "FN": 0,
+     "recall": 1.0,
+     "center_recall": 1.0
+    },
+    "yolo11s": {
+     "FN": 0,
+     "recall": 1.0,
+     "center_recall": 1.0
+    },
+    "yolov8n": {
+     "FN": 0,
+     "recall": 1.0,
+     "center_recall": 1.0
+    }
+   },
+   {
+    "level": "3호기",
+    "n": 122,
+    "rfdetr_s": {
+     "FN": 3,
+     "recall": 0.9754098360655737,
+     "center_recall": 1.0
+    },
+    "yolo11s": {
+     "FN": 6,
+     "recall": 0.9508196721311475,
+     "center_recall": 1.0
+    },
+    "yolov8n": {
+     "FN": 5,
+     "recall": 0.9590163934426229,
+     "center_recall": 1.0
+    }
+   }
+  ]
+ },
+ "fn_detail": [
+  {
+   "model": "rfdetr_s",
+   "split": "val",
+   "image": "h1_002_20200623_043039(3)",
+   "gt_w": 5.999840000000006,
+   "gt_h": 6.999888000000027,
+   "best_iou": 0.49431464490129007,
+   "score": 0.76405,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "높음",
+   "edge": "내부",
+   "hogi": "1"
+  },
+  {
+   "model": "rfdetr_s",
+   "split": "val",
+   "image": "h1_002_20200623_203040(4)",
+   "gt_w": 8.99993600000002,
+   "gt_h": 4.9999200000000315,
+   "best_iou": 0.390137216388442,
+   "score": 0.74886,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "높음",
+   "edge": "내부",
+   "hogi": "1"
+  },
+  {
+   "model": "rfdetr_s",
+   "split": "val",
+   "image": "h3_001_20200622_203305(8)",
+   "gt_w": 6.00019199999997,
+   "gt_h": 7.999991999999992,
+   "best_iou": 0.44412266285861357,
+   "score": 0.62402,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "낮음",
+   "edge": "내부",
+   "hogi": "3"
+  },
+  {
+   "model": "rfdetr_s",
+   "split": "val",
+   "image": "h3_001_20200622_203316(0)",
+   "gt_w": 7.000128000000075,
+   "gt_h": 11.000100000000003,
+   "best_iou": 0.4856819858788648,
+   "score": 0.67854,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "낮음",
+   "edge": "내부",
+   "hogi": "3"
+  },
+  {
+   "model": "rfdetr_s",
+   "split": "val",
+   "image": "h3_001_20200622_203316(0)",
+   "gt_w": 8.000064000000066,
+   "gt_h": 11.000099999999975,
+   "best_iou": 0.4035110071906814,
+   "score": 0.65193,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "낮음",
+   "edge": "내부",
+   "hogi": "3"
+  },
+  {
+   "model": "rfdetr_s",
+   "split": "test",
+   "image": "h1_002_20200624_123126(4)",
+   "gt_w": 5.999840000000006,
+   "gt_h": 6.999888000000027,
+   "best_iou": 0.4500706535783769,
+   "score": 0.81398,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "높음",
+   "edge": "내부",
+   "hogi": "1"
+  },
+  {
+   "model": "rfdetr_s",
+   "split": "test",
+   "image": "h1_002_20200624_162543(7)",
+   "gt_w": 11.0,
+   "gt_h": 12.000140000000044,
+   "best_iou": 0.4626203603347126,
+   "score": 0.73888,
+   "center_hit": true,
+   "size": "큼",
+   "contrast": "중간",
+   "edge": "내부",
+   "hogi": "1"
+  },
+  {
+   "model": "yolo11s",
+   "split": "val",
+   "image": "h1_002_20200623_203040(4)",
+   "gt_w": 8.99993600000002,
+   "gt_h": 4.9999200000000315,
+   "best_iou": 0.36328373078794757,
+   "score": 0.74523,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "높음",
+   "edge": "내부",
+   "hogi": "1"
+  },
+  {
+   "model": "yolo11s",
+   "split": "val",
+   "image": "h3_001_20200622_203305(8)",
+   "gt_w": 6.00019199999997,
+   "gt_h": 7.999991999999992,
+   "best_iou": 0.3077048048420725,
+   "score": 0.68629,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "낮음",
+   "edge": "내부",
+   "hogi": "3"
+  },
+  {
+   "model": "yolo11s",
+   "split": "val",
+   "image": "h3_001_20200622_203305(8)",
+   "gt_w": 8.000064000000009,
+   "gt_h": 10.000212000000033,
+   "best_iou": 0.3756267431538991,
+   "score": 0.60814,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "낮음",
+   "edge": "내부",
+   "hogi": "3"
+  },
+  {
+   "model": "yolo11s",
+   "split": "val",
+   "image": "h3_001_20200622_203316(0)",
+   "gt_w": 8.000064000000066,
+   "gt_h": 11.000099999999975,
+   "best_iou": 0.45692090422033843,
+   "score": 0.61717,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "낮음",
+   "edge": "내부",
+   "hogi": "3"
+  },
+  {
+   "model": "yolo11s",
+   "split": "val",
+   "image": "h3_001_20200623_003536(0)",
+   "gt_w": 11.999808000000087,
+   "gt_h": 8.999880000000019,
+   "best_iou": 0.49780972058477274,
+   "score": 0.69108,
+   "center_hit": true,
+   "size": "중간",
+   "contrast": "낮음",
+   "edge": "내부",
+   "hogi": "3"
+  },
+  {
+   "model": "yolo11s",
+   "split": "val",
+   "image": "h3_001_20200623_082414(1)",
+   "gt_w": 8.000064000000009,
+   "gt_h": 8.99987999999999,
+   "best_iou": 0.3644893173278917,
+   "score": 0.63783,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "낮음",
+   "edge": "내부",
+   "hogi": "3"
+  },
+  {
+   "model": "yolo11s",
+   "split": "val",
+   "image": "h3_001_20200629_123111(6)",
+   "gt_w": 10.999871999999925,
+   "gt_h": 8.999880000000019,
+   "best_iou": 0.4661473373841777,
+   "score": 0.66647,
+   "center_hit": true,
+   "size": "중간",
+   "contrast": "낮음",
+   "edge": "내부",
+   "hogi": "3"
+  },
+  {
+   "model": "yolo11s",
+   "split": "test",
+   "image": "h1_002_20200623_123048(4)",
+   "gt_w": 6.9998720000000105,
+   "gt_h": 8.999855999999994,
+   "best_iou": 0.4965667219084135,
+   "score": 0.73667,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "중간",
+   "edge": "내부",
+   "hogi": "1"
+  },
+  {
+   "model": "yolo11s",
+   "split": "test",
+   "image": "h1_002_20200624_123126(4)",
+   "gt_w": 5.999840000000006,
+   "gt_h": 6.999888000000027,
+   "best_iou": 0.4829895108307808,
+   "score": 0.69407,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "높음",
+   "edge": "내부",
+   "hogi": "1"
+  },
+  {
+   "model": "yolo11s",
+   "split": "test",
+   "image": "h1_002_20200624_162522(0)",
+   "gt_w": 5.999840000000006,
+   "gt_h": 7.999871999999982,
+   "best_iou": 0.49828449957624976,
+   "score": 0.74492,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "높음",
+   "edge": "내부",
+   "hogi": "1"
+  },
+  {
+   "model": "yolov8n",
+   "split": "val",
+   "image": "h1_002_20200623_043039(3)",
+   "gt_w": 5.999840000000006,
+   "gt_h": 6.999888000000027,
+   "best_iou": 0.41154136674318237,
+   "score": 0.70551,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "높음",
+   "edge": "내부",
+   "hogi": "1"
+  },
+  {
+   "model": "yolov8n",
+   "split": "val",
+   "image": "h1_002_20200623_043043(2)",
+   "gt_w": 7.999903999999987,
+   "gt_h": 6.9998879999999986,
+   "best_iou": 0.4850700946802499,
+   "score": 0.75724,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "높음",
+   "edge": "내부",
+   "hogi": "1"
+  },
+  {
+   "model": "yolov8n",
+   "split": "val",
+   "image": "h1_002_20200623_043047(2)",
+   "gt_w": 6.999872000000039,
+   "gt_h": 7.999871999999982,
+   "best_iou": 0.47117076500488986,
+   "score": 0.72973,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "높음",
+   "edge": "내부",
+   "hogi": "1"
+  },
+  {
+   "model": "yolov8n",
+   "split": "val",
+   "image": "h1_002_20200623_203040(4)",
+   "gt_w": 8.99993600000002,
+   "gt_h": 4.9999200000000315,
+   "best_iou": 0.3715942031103002,
+   "score": 0.72077,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "높음",
+   "edge": "내부",
+   "hogi": "1"
+  },
+  {
+   "model": "yolov8n",
+   "split": "val",
+   "image": "h3_001_20200622_203305(8)",
+   "gt_w": 6.00019199999997,
+   "gt_h": 7.999991999999992,
+   "best_iou": 0.41618247646948886,
+   "score": 0.65037,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "낮음",
+   "edge": "내부",
+   "hogi": "3"
+  },
+  {
+   "model": "yolov8n",
+   "split": "val",
+   "image": "h3_001_20200624_162816(3)",
+   "gt_w": 18.999935999999934,
+   "gt_h": 15.000096000000013,
+   "best_iou": 0.43187026970634895,
+   "score": 0.61152,
+   "center_hit": true,
+   "size": "큼",
+   "contrast": "낮음",
+   "edge": "내부",
+   "hogi": "3"
+  },
+  {
+   "model": "yolov8n",
+   "split": "val",
+   "image": "h3_001_20200624_162816(3)",
+   "gt_w": 16.000128000000018,
+   "gt_h": 15.999983999999984,
+   "best_iou": 0.41521467162399756,
+   "score": 0.64667,
+   "center_hit": true,
+   "size": "큼",
+   "contrast": "낮음",
+   "edge": "내부",
+   "hogi": "3"
+  },
+  {
+   "model": "yolov8n",
+   "split": "val",
+   "image": "h3_001_20200624_162831(2)",
+   "gt_w": 14.000255999999979,
+   "gt_h": 18.000203999999968,
+   "best_iou": 0.4100156334186109,
+   "score": 0.63576,
+   "center_hit": true,
+   "size": "큼",
+   "contrast": "낮음",
+   "edge": "내부",
+   "hogi": "3"
+  },
+  {
+   "model": "yolov8n",
+   "split": "test",
+   "image": "h1_002_20200623_123036(5)",
+   "gt_w": 6.999872000000039,
+   "gt_h": 6.999888000000027,
+   "best_iou": 0.44983126171792337,
+   "score": 0.6997,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "높음",
+   "edge": "내부",
+   "hogi": "1"
+  },
+  {
+   "model": "yolov8n",
+   "split": "test",
+   "image": "h1_002_20200623_123036(5)",
+   "gt_w": 6.999872000000039,
+   "gt_h": 6.999888000000027,
+   "best_iou": 0.48154177286030675,
+   "score": 0.69782,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "낮음",
+   "edge": "내부",
+   "hogi": "1"
+  },
+  {
+   "model": "yolov8n",
+   "split": "test",
+   "image": "h1_002_20200623_123048(4)",
+   "gt_w": 6.9998720000000105,
+   "gt_h": 8.999855999999994,
+   "best_iou": 0.4324889313382101,
+   "score": 0.74988,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "중간",
+   "edge": "내부",
+   "hogi": "1"
+  },
+  {
+   "model": "yolov8n",
+   "split": "test",
+   "image": "h1_002_20200624_123126(4)",
+   "gt_w": 5.999840000000006,
+   "gt_h": 6.999888000000027,
+   "best_iou": 0.3803358691728242,
+   "score": 0.70033,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "높음",
+   "edge": "내부",
+   "hogi": "1"
+  },
+  {
+   "model": "yolov8n",
+   "split": "test",
+   "image": "h1_002_20200624_162522(0)",
+   "gt_w": 5.999840000000006,
+   "gt_h": 7.999871999999982,
+   "best_iou": 0.42438057262040996,
+   "score": 0.7145,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "높음",
+   "edge": "내부",
+   "hogi": "1"
+  },
+  {
+   "model": "yolov8n",
+   "split": "test",
+   "image": "h1_002_20200624_162536(8)",
+   "gt_w": 5.999839999999978,
+   "gt_h": 7.999871999999982,
+   "best_iou": 0.4682617384569674,
+   "score": 0.7327,
+   "center_hit": true,
+   "size": "작음",
+   "contrast": "중간",
+   "edge": "내부",
+   "hogi": "1"
+  },
+  {
+   "model": "yolov8n",
+   "split": "test",
+   "image": "h3_001_20200814_083045(8)",
+   "gt_w": 12.999744000000078,
+   "gt_h": 12.999875999999972,
+   "best_iou": 0.49486535277301,
+   "score": 0.62842,
+   "center_hit": true,
+   "size": "큼",
+   "contrast": "낮음",
+   "edge": "내부",
+   "hogi": "3"
+  }
+ ],
+ "stress": {
+  "rfdetr_s": [
+   {
+    "split": "val",
+    "k": 1.0,
+    "FN": 5,
+    "FP": 6,
+    "recall": 0.9726775956284153,
+    "center_recall": 1.0,
+    "image_detect": 1.0
+   },
+   {
+    "split": "val",
+    "k": 0.75,
+    "FN": 12,
+    "FP": 8,
+    "recall": 0.9344262295081968,
+    "center_recall": 0.9726775956284153,
+    "image_detect": 1.0
+   },
+   {
+    "split": "val",
+    "k": 0.5,
+    "FN": 73,
+    "FP": 10,
+    "recall": 0.6010928961748634,
+    "center_recall": 0.6502732240437158,
+    "image_detect": 0.8375
+   },
+   {
+    "split": "val",
+    "k": 0.35,
+    "FN": 135,
+    "FP": 16,
+    "recall": 0.26229508196721313,
+    "center_recall": 0.3442622950819672,
+    "image_detect": 0.4875
+   },
+   {
+    "split": "val",
+    "k": 0.25,
+    "FN": 179,
+    "FP": 5,
+    "recall": 0.02185792349726776,
+    "center_recall": 0.04371584699453552,
+    "image_detect": 0.1
+   },
+   {
+    "split": "test",
+    "k": 1.0,
+    "FN": 2,
+    "FP": 2,
+    "recall": 0.9883720930232558,
+    "center_recall": 1.0,
+    "image_detect": 1.0
+   },
+   {
+    "split": "test",
+    "k": 0.75,
+    "FN": 6,
+    "FP": 6,
+    "recall": 0.9651162790697675,
+    "center_recall": 1.0,
+    "image_detect": 1.0
+   },
+   {
+    "split": "test",
+    "k": 0.5,
+    "FN": 42,
+    "FP": 15,
+    "recall": 0.7558139534883721,
+    "center_recall": 0.8430232558139535,
+    "image_detect": 0.8375
+   },
+   {
+    "split": "test",
+    "k": 0.35,
+    "FN": 111,
+    "FP": 22,
+    "recall": 0.3546511627906977,
+    "center_recall": 0.48255813953488375,
+    "image_detect": 0.5125
+   },
+   {
+    "split": "test",
+    "k": 0.25,
+    "FN": 168,
+    "FP": 5,
+    "recall": 0.023255813953488372,
+    "center_recall": 0.05232558139534884,
+    "image_detect": 0.0875
+   }
+  ],
+  "yolo11s": [
+   {
+    "split": "val",
+    "k": 1.0,
+    "FN": 7,
+    "FP": 8,
+    "recall": 0.9617486338797814,
+    "center_recall": 1.0,
+    "image_detect": 1.0
+   },
+   {
+    "split": "val",
+    "k": 0.75,
+    "FN": 14,
+    "FP": 8,
+    "recall": 0.9234972677595629,
+    "center_recall": 0.9617486338797814,
+    "image_detect": 1.0
+   },
+   {
+    "split": "val",
+    "k": 0.5,
+    "FN": 55,
+    "FP": 4,
+    "recall": 0.6994535519125683,
+    "center_recall": 0.7158469945355191,
+    "image_detect": 0.8875
+   },
+   {
+    "split": "val",
+    "k": 0.35,
+    "FN": 115,
+    "FP": 8,
+    "recall": 0.37158469945355194,
+    "center_recall": 0.4098360655737705,
+    "image_detect": 0.6375
+   },
+   {
+    "split": "val",
+    "k": 0.25,
+    "FN": 168,
+    "FP": 3,
+    "recall": 0.08196721311475409,
+    "center_recall": 0.09289617486338798,
+    "image_detect": 0.225
+   },
+   {
+    "split": "test",
+    "k": 1.0,
+    "FN": 3,
+    "FP": 3,
+    "recall": 0.9825581395348837,
+    "center_recall": 1.0,
+    "image_detect": 1.0
+   },
+   {
+    "split": "test",
+    "k": 0.75,
+    "FN": 7,
+    "FP": 5,
+    "recall": 0.9593023255813954,
+    "center_recall": 0.9883720930232558,
+    "image_detect": 0.9875
+   },
+   {
+    "split": "test",
+    "k": 0.5,
+    "FN": 27,
+    "FP": 10,
+    "recall": 0.8430232558139535,
+    "center_recall": 0.9011627906976745,
+    "image_detect": 0.975
+   },
+   {
+    "split": "test",
+    "k": 0.35,
+    "FN": 105,
+    "FP": 12,
+    "recall": 0.38953488372093026,
+    "center_recall": 0.45930232558139533,
+    "image_detect": 0.625
+   },
+   {
+    "split": "test",
+    "k": 0.25,
+    "FN": 163,
+    "FP": 5,
+    "recall": 0.05232558139534884,
+    "center_recall": 0.08139534883720931,
+    "image_detect": 0.15
+   }
+  ],
+  "yolov8n": [
+   {
+    "split": "val",
+    "k": 1.0,
+    "FN": 8,
+    "FP": 9,
+    "recall": 0.9562841530054644,
+    "center_recall": 1.0,
+    "image_detect": 1.0
+   },
+   {
+    "split": "val",
+    "k": 0.75,
+    "FN": 31,
+    "FP": 20,
+    "recall": 0.8306010928961749,
+    "center_recall": 0.9344262295081968,
+    "image_detect": 0.9875
+   },
+   {
+    "split": "val",
+    "k": 0.5,
+    "FN": 106,
+    "FP": 17,
+    "recall": 0.4207650273224044,
+    "center_recall": 0.5081967213114754,
+    "image_detect": 0.75
+   },
+   {
+    "split": "val",
+    "k": 0.35,
+    "FN": 168,
+    "FP": 9,
+    "recall": 0.08196721311475409,
+    "center_recall": 0.12568306010928962,
+    "image_detect": 0.2625
+   },
+   {
+    "split": "val",
+    "k": 0.25,
+    "FN": 180,
+    "FP": 4,
+    "recall": 0.01639344262295082,
+    "center_recall": 0.0273224043715847,
+    "image_detect": 0.0875
+   },
+   {
+    "split": "test",
+    "k": 1.0,
+    "FN": 7,
+    "FP": 8,
+    "recall": 0.9593023255813954,
+    "center_recall": 1.0,
+    "image_detect": 1.0
+   },
+   {
+    "split": "test",
+    "k": 0.75,
+    "FN": 16,
+    "FP": 15,
+    "recall": 0.9069767441860465,
+    "center_recall": 0.9883720930232558,
+    "image_detect": 1.0
+   },
+   {
+    "split": "test",
+    "k": 0.5,
+    "FN": 74,
+    "FP": 20,
+    "recall": 0.5697674418604651,
+    "center_recall": 0.6802325581395349,
+    "image_detect": 0.775
+   },
+   {
+    "split": "test",
+    "k": 0.35,
+    "FN": 147,
+    "FP": 12,
+    "recall": 0.14534883720930233,
+    "center_recall": 0.20930232558139536,
+    "image_detect": 0.3375
+   },
+   {
+    "split": "test",
+    "k": 0.25,
+    "FN": 169,
+    "FP": 5,
+    "recall": 0.01744186046511628,
+    "center_recall": 0.040697674418604654,
+    "image_detect": 0.1
+   }
+  ]
+ },
+ "session_ci": {
+  "rfdetr_s": {
+   "sessions": 22,
+   "recall_CI95": [
+    0.9736842105263158,
+    1.0
+   ],
+   "F1_CI95": [
+    0.9736842105263158,
+    1.0
+   ]
+  },
+  "yolo11s": {
+   "sessions": 22,
+   "recall_CI95": [
+    0.9666666666666667,
+    1.0
+   ],
+   "F1_CI95": [
+    0.9666666666666667,
+    1.0
+   ]
+  },
+  "yolov8n": {
+   "sessions": 22,
+   "recall_CI95": [
+    0.9166666666666666,
+    0.9925979216626698
+   ],
+   "F1_CI95": [
+    0.9104836417970648,
+    0.9925979216626698
+   ]
+  }
+ },
+ "t_low": {
+  "rfdetr_s": 0.1,
+  "yolo11s": 0.15,
+  "yolov8n": 0.1
+ },
+ "t_high": {
+  "rfdetr_s": 0.53493,
+  "yolo11s": 0.54914,
+  "yolov8n": 0.35804
+ },
+ "policy": {
+  "RF-DETR-S 단독": {
+   "val": {
+    "REJECT": 80
+   },
+   "val_normal": {
+    "PASS": 73,
+    "RE-INSPECTION": 3,
+    "REJECT": 4
+   },
+   "test": {
+    "REJECT": 80
+   },
+   "test_normal": {
+    "PASS": 74,
+    "RE-INSPECTION": 6
+   }
+  },
+  "YOLO11s 단독": {
+   "val": {
+    "REJECT": 80
+   },
+   "val_normal": {
+    "PASS": 74,
+    "REJECT": 1,
+    "RE-INSPECTION": 5
+   },
+   "test": {
+    "REJECT": 80
+   },
+   "test_normal": {
+    "PASS": 71,
+    "RE-INSPECTION": 9
+   }
+  },
+  "RF-DETR-S + YOLO11s": {
+   "val": {
+    "REJECT": 80
+   },
+   "val_normal": {
+    "PASS": 69,
+    "RE-INSPECTION": 10,
+    "REJECT": 1
+   },
+   "test": {
+    "REJECT": 80
+   },
+   "test_normal": {
+    "PASS": 68,
+    "RE-INSPECTION": 12
+   }
+  }
+ },
+ "n_gt": 355
+}
