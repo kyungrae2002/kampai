@@ -1,0 +1,10 @@
+{
+ "train->test": 26,
+ "train->val": 68,
+ "val->train": 57,
+ "train->train": 246,
+ "test->test": 24,
+ "test->train": 47,
+ "val->test": 23,
+ "test->val": 9
+}

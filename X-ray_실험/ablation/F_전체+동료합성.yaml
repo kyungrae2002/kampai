@@ -1,0 +1,6 @@
+path: /Users/kyungrae/Desktop/kamp_ai/X-ray_데이터셋_통합
+train: /Users/kyungrae/Desktop/kamp_ai/X-ray_실험/ablation/F_전체+동료합성.txt
+val: 검증/images
+test: 테스트/images
+names:
+  0: defect

@@ -1,0 +1,20 @@
+{
+  "method": "image_count_weighted_parameter_average_then_bn_recalibration",
+  "checkpoints": [
+    "/Users/kyungrae/Desktop/kamp_ai/training/runs/machine_1/last.pt",
+    "/Users/kyungrae/Desktop/kamp_ai/training/runs/machine_2/last.pt",
+    "/Users/kyungrae/Desktop/kamp_ai/training/runs/machine_3/last.pt"
+  ],
+  "raw_weights": [
+    805.0,
+    689.0,
+    663.0
+  ],
+  "normalized_weights": [
+    0.3732035234121465,
+    0.3194251274918869,
+    0.30737134909596664
+  ],
+  "calibration_images": 2157,
+  "bn_layers_recalibrated": 73
+}

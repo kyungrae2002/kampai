@@ -1,0 +1,229 @@
+{
+  "seed": 20260929,
+  "folds": 5,
+  "group_key": "session_id",
+  "development": {
+    "images": 2157,
+    "sessions": 545,
+    "positives": 2068,
+    "negatives": 89,
+    "boxes": 3779,
+    "machines": {
+      "1": 805,
+      "2": 689,
+      "3": 663
+    }
+  },
+  "fixed_test": {
+    "images": 375,
+    "sessions": 95,
+    "positives": 359,
+    "negatives": 16,
+    "boxes": 673,
+    "machines": {
+      "1": 138,
+      "2": 116,
+      "3": 121
+    }
+  },
+  "fold_details": {
+    "1": {
+      "train": {
+        "images": 1727,
+        "sessions": 436,
+        "positives": 1656,
+        "negatives": 71,
+        "boxes": 3017,
+        "machines": {
+          "1": 644,
+          "2": 553,
+          "3": 530
+        }
+      },
+      "val": {
+        "images": 430,
+        "sessions": 109,
+        "positives": 412,
+        "negatives": 18,
+        "boxes": 762,
+        "machines": {
+          "1": 161,
+          "2": 136,
+          "3": 133
+        }
+      }
+    },
+    "2": {
+      "train": {
+        "images": 1724,
+        "sessions": 435,
+        "positives": 1652,
+        "negatives": 72,
+        "boxes": 3029,
+        "machines": {
+          "1": 645,
+          "2": 549,
+          "3": 530
+        }
+      },
+      "val": {
+        "images": 433,
+        "sessions": 110,
+        "positives": 416,
+        "negatives": 17,
+        "boxes": 750,
+        "machines": {
+          "1": 160,
+          "2": 140,
+          "3": 133
+        }
+      }
+    },
+    "3": {
+      "train": {
+        "images": 1728,
+        "sessions": 437,
+        "positives": 1657,
+        "negatives": 71,
+        "boxes": 3017,
+        "machines": {
+          "1": 644,
+          "2": 553,
+          "3": 531
+        }
+      },
+      "val": {
+        "images": 429,
+        "sessions": 108,
+        "positives": 411,
+        "negatives": 18,
+        "boxes": 762,
+        "machines": {
+          "1": 161,
+          "2": 136,
+          "3": 132
+        }
+      }
+    },
+    "4": {
+      "train": {
+        "images": 1725,
+        "sessions": 435,
+        "positives": 1653,
+        "negatives": 72,
+        "boxes": 3017,
+        "machines": {
+          "1": 641,
+          "2": 552,
+          "3": 532
+        }
+      },
+      "val": {
+        "images": 432,
+        "sessions": 110,
+        "positives": 415,
+        "negatives": 17,
+        "boxes": 762,
+        "machines": {
+          "1": 164,
+          "2": 137,
+          "3": 131
+        }
+      }
+    },
+    "5": {
+      "train": {
+        "images": 1724,
+        "sessions": 437,
+        "positives": 1654,
+        "negatives": 70,
+        "boxes": 3036,
+        "machines": {
+          "1": 646,
+          "2": 549,
+          "3": 529
+        }
+      },
+      "val": {
+        "images": 433,
+        "sessions": 108,
+        "positives": 414,
+        "negatives": 19,
+        "boxes": 743,
+        "machines": {
+          "1": 159,
+          "2": 140,
+          "3": 134
+        }
+      }
+    }
+  },
+  "machine_details": {
+    "1": {
+      "train": {
+        "images": 805,
+        "sessions": 220,
+        "positives": 716,
+        "negatives": 89,
+        "boxes": 1307,
+        "machines": {
+          "1": 805
+        }
+      },
+      "test": {
+        "images": 138,
+        "sessions": 38,
+        "positives": 122,
+        "negatives": 16,
+        "boxes": 236,
+        "machines": {
+          "1": 138
+        }
+      }
+    },
+    "2": {
+      "train": {
+        "images": 689,
+        "sessions": 148,
+        "positives": 689,
+        "negatives": 0,
+        "boxes": 1225,
+        "machines": {
+          "2": 689
+        }
+      },
+      "test": {
+        "images": 116,
+        "sessions": 26,
+        "positives": 116,
+        "negatives": 0,
+        "boxes": 216,
+        "machines": {
+          "2": 116
+        }
+      }
+    },
+    "3": {
+      "train": {
+        "images": 663,
+        "sessions": 177,
+        "positives": 663,
+        "negatives": 0,
+        "boxes": 1247,
+        "machines": {
+          "3": 663
+        }
+      },
+      "test": {
+        "images": 121,
+        "sessions": 31,
+        "positives": 121,
+        "negatives": 0,
+        "boxes": 221,
+        "machines": {
+          "3": 121
+        }
+      }
+    }
+  }
+}
