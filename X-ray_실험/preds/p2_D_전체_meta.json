@@ -1,0 +1,9 @@
+{
+ "exp": "D_전체",
+ "yaml": "/Users/kyungrae/Desktop/kamp_ai/X-ray_실험/ablation/D_전체.yaml",
+ "epochs": 30,
+ "imgsz": 640,
+ "seed": 0,
+ "train_images": 4372,
+ "train_seconds": 2456.8832700252533
+}

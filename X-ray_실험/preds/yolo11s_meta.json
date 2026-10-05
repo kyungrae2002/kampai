@@ -1,0 +1,8 @@
+{
+ "model": "yolo11s",
+ "weights": "yolo11s.pt",
+ "train_seconds": 9744.887665271759,
+ "epochs_requested": 70,
+ "ms_per_image_mps_batch1": 17.137256501212953,
+ "pred_csv": "/Users/kyungrae/Desktop/kamp_ai/X-ray_\uc2e4\ud5d8/preds/yolo11s.csv"
+}

@@ -1,0 +1,8 @@
+{
+ "model": "yolov8n",
+ "weights": "yolov8n.pt",
+ "train_seconds": 2584.8997020721436,
+ "epochs_requested": 80,
+ "ms_per_image_mps_batch1": 5.563179651896159,
+ "pred_csv": "/Users/kyungrae/Desktop/kamp_ai/X-ray_\uc2e4\ud5d8/preds/yolov8n.csv"
+}

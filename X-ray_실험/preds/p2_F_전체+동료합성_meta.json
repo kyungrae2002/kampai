@@ -1,0 +1,9 @@
+{
+ "exp": "F_전체+동료합성",
+ "yaml": "/Users/kyungrae/Desktop/kamp_ai/X-ray_실험/ablation/F_전체+동료합성.yaml",
+ "epochs": 30,
+ "imgsz": 640,
+ "seed": 0,
+ "train_images": 5134,
+ "train_seconds": 2896.3110699653625
+}

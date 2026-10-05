@@ -1,0 +1,36 @@
+Loading weights:   0%|          | 0/824 [00:00<?, ?it/s]Loading weights: 100%|██████████| 824/824 [00:00<00:00, 8848.40it/s]
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+trainable params: 29,933,568 || all params: 3,784,556,544 || trainable%: 0.7909
+ep0 step10/325 loss 0.4635 226s
+ep0 step20/325 loss 0.3477 439s
+ep0 step30/325 loss 0.4289 656s
+ep0 step40/325 loss 0.0095 864s
+ep0 step50/325 loss 0.4325 1064s
+ep0 step60/325 loss 0.2211 1282s
+ep0 step70/325 loss 0.2677 1480s
+ep0 step80/325 loss 0.0003 1676s
+ep0 step90/325 loss 0.0026 1886s
+ep0 step100/325 loss 0.3132 2085s
+ep0 step110/325 loss 0.2079 2274s
+ep0 step120/325 loss 0.2263 2484s
+ep0 step130/325 loss 0.0000 2677s
+ep0 step140/325 loss 0.2790 2868s
+ep0 step150/325 loss 0.3939 3088s
+ep0 step160/325 loss 0.0005 3298s
+ep1 step170/325 loss 0.3057 3498s
+ep1 step180/325 loss 0.2752 3710s
+ep1 step190/325 loss 0.2746 3935s
+ep1 step200/325 loss 0.2366 4139s
+ep1 step210/325 loss 0.2851 4333s
+ep1 step220/325 loss 0.2150 4536s
+ep1 step230/325 loss 0.0001 4740s
+ep1 step240/325 loss 0.2820 4951s
+ep1 step250/325 loss 0.1920 5148s
+ep1 step260/325 loss 0.2204 5349s
+ep1 step270/325 loss 0.2256 5576s
+ep1 step280/325 loss 0.1991 5794s
+ep1 step290/325 loss 0.2226 6001s
+ep1 step300/325 loss 0.0001 6199s
+ep1 step310/325 loss 0.1488 6418s
+ep1 step320/325 loss 0.2759 6635s
+DONE qwen25vl3b_lora

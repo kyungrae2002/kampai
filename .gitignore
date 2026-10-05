@@ -51,6 +51,26 @@
 !/X-ray_데이터셋_통합/검증결과/*.json
 !/X-ray_데이터셋_통합/검증결과/*.csv
 
+# Selected execution evidence; do not track resume markers (*.done/*.failed).
+!/X-ray_실험/logs/01_env.log
+!/X-ray_실험/logs/run_all.log
+!/X-ray_실험/logs/phase2.log
+!/X-ray_실험/logs/11_smoke_rfdetr.log
+!/X-ray_실험/logs/30_vlm_zeroshot.log
+!/X-ray_실험/logs/31_vlm_lora.log
+!/X-ray_실험/logs/40_rfdetr_s.log
+!/X-ray_실험/logs/50_stress_preds.log
+!/training/experiments/point_decoy_roi_5fold/fold_*/logs/*_train.log
+!/training/experiments/point_decoy_roi_5fold/fold_*/logs/*_eval.log
+
+# Compact evaluation summaries and execution metadata, not raw predictions.
+!/X-ray_실험/preds/*_eval.json
+!/X-ray_실험/preds/*_meta.json
+/X-ray_실험/preds/*_smoke*.json
+
+# Split provenance for auditing session leakage.
+!/training/cv/fold_assignments.csv
+
 # Prune local environments, caches, raw data, and private configuration.
 .git/
 .venv/
