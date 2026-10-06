@@ -48,6 +48,9 @@
 !/X-ray_실험/report/ensemble_val*.json
 !/X-ray_실험/report/baseline_yolov3_valtest.json
 !/X-ray_실험/report/policy_s1.json
+!/X-ray_실험/report/a_vs_d.json
+!/X-ray_실험/report/compare_A_val.json
+!/X-ray_실험/report/compare_A2_val.json
 !/X-ray_데이터셋_통합/검증결과/*.json
 !/X-ray_데이터셋_통합/검증결과/*.csv
 

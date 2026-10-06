@@ -1,6 +1,6 @@
 import json, os, base64, datetime
 R = '/home/claude/kamp/X-ray_실험'
-S1 = json.load(open(f'{R}/analysis_stage1.json')); RA = json.load(open(f'{R}/report/report_analysis.json')); P2 = json.load(open(f'{R}/report/p2_analysis.json')); ENS = json.load(open(f'{R}/report/ensemble_val_test.json')); BL = json.load(open(f'{R}/report/baseline_yolov3_valtest.json'))
+S1 = json.load(open(f'{R}/analysis_stage1.json')); RA = json.load(open(f'{R}/report/report_analysis.json')); P2 = json.load(open(f'{R}/report/p2_analysis.json')); ENS = json.load(open(f'{R}/report/ensemble_val_test.json')); BL = json.load(open(f'{R}/report/baseline_yolov3_valtest.json')); AD = json.load(open(f'{R}/report/a_vs_d.json'))
 def img(p, w='100%'):
     b = base64.b64encode(open(p, 'rb').read()).decode(); ext = 'png' if p.endswith('png') else 'jpeg'
     return f'<img src="data:image/{ext};base64,{b}" style="width:{w}">'
@@ -30,7 +30,7 @@ def hogi_table(k):
     return h + '</tbody></table>'
 def fnt_table(k):
     a, b = S1[k]['val_fn_types'], S1[k]['test_fn_types']
-    return f"<table><thead><tr><th>세트</th><th>박스 불일치 (IoU 0.1~0.5)</th><th>점수 미달</th><th>후보 없음</th></tr></thead><tbody><tr><td>검증</td><td>{a['box_mismatch']}</td><td>{a['below_threshold']}</td><td>{a['no_candidate']}</td></tr><tr><td>테스트</td><td>{b['box_mismatch']}</td><td>{b['below_threshold']}</td><td>{b['no_candidate']}</td></tr></tbody></table>"
+    return f"<table><thead><tr><th>세트</th><th>박스 불일치 (IoU 0.1~0.5)</th><th>확신도 미달</th><th>후보 없음</th></tr></thead><tbody><tr><td>검증</td><td>{a['box_mismatch']}</td><td>{a['below_threshold']}</td><td>{a['no_candidate']}</td></tr><tr><td>테스트</td><td>{b['box_mismatch']}</td><td>{b['below_threshold']}</td><td>{b['no_candidate']}</td></tr></tbody></table>"
 CI = RA['session_ci']; TH = RA['t_high']; TL = RA['t_low']; POL = RA['policy']
 fail = RA['fail']
 def fail_rows(f):
@@ -144,7 +144,8 @@ a(f'<figure>{img(R+"/report/figs_extra/label_missing.jpg","78%")}<figcaption>그
 a('<h2 class=chap>□ 제2장. AI 예측모델 개발 및 성능평가</h2>')
 o('평가 설계')
 d('모든 모델은 같은 학습 데이터 4,372장으로 학습하고, 같은 채점 코드로 평가했습니다. 정답과 예측은 IoU ≥ 0.5로 1:1 대응시켰습니다.')
-d('confidence 임계값은 검증셋 F1이 최대인 값으로 정하고, 테스트셋에는 그 값을 바꾸지 않고 한 번만 적용했습니다.')
+d('이물 확신도(confidence score)는 모델이 검출한 후보를 이물이라고 판단하는 정도를 0~1로 나타낸 값이며, 값이 클수록 이물일 가능성을 높게 판단한 것입니다. 이 값이 임계값 이상인 후보만 이물로 판정합니다.')
+d('이물 확신도 임계값은 검증셋 F1이 최대인 값으로 정하고, 테스트셋에는 그 값을 바꾸지 않고 한 번만 적용했습니다.')
 d('이물 미탐이 가장 중요하므로 재현율과 FN을 주지표로, mAP·정밀도·FP를 보조지표로 삼았습니다.')
 s('현장 용어와의 대응: FN(놓친 이물)은 미검, 합성 정상 영상에서의 오경보는 과검에 해당합니다.')
 s('보조 평가: 이물 중심 적중률(예측 박스 중심이 정답 박스 안), 미끼 박스 오탐, 합성 정상 영상(검증·테스트 영상의 이물을 지운 160장) 오경보율, 세션 단위 부트스트랩 95% 신뢰구간')
@@ -157,15 +158,15 @@ a(f"""<table><thead><tr><th>모델</th><th>구조</th><th>학습 조건</th><th>
 <tr><td class=l>Qwen2.5-VL-3B LoRA</td><td class=l>비전-언어 모델 + LoRA(r=16)</td><td class=l>1,300장 × 2ep, 영상 1.5배 확대</td><td>{S1['qwen25vl3b_lora']['meta']['train_seconds']/3600:.1f} h</td><td>{ms('qwen25vl3b_lora')} ms</td></tr></tbody></table>""")
 s('장치: Apple M5 Pro (MPS), Python 3.12.14, PyTorch 2.14.1. 사전학습 가중치는 공개 COCO 가중치만 사용했습니다.')
 o('동일 조건 성능 비교')
-a('<div class=tcap>표 1. 모델별 성능 (검증 80장·테스트 80장, 임계값은 검증에서 결정)</div>' + main_table(['rfdetr_s','yolo11s','yolov8n','qwen25vl3b_lora','qwen25vl3b_zeroshot']))
+a('<div class=tcap>표 1. 모델별 성능 (학습 데이터 D 구성 4,372장, 검증 80장·테스트 80장, 임계값은 검증에서 결정)</div>' + main_table(['rfdetr_s','yolo11s','yolov8n','qwen25vl3b_lora','qwen25vl3b_zeroshot']))
 a(f'<figure>{F("f4_models.png")}<figcaption>그림 6. 모델별 지표와 미탐 수</figcaption></figure>')
 d(f"참고로 KAMP 제공 기존 모델(YOLOv3)은 표시 박스가 없는 같은 테스트 영상에서 이물을 하나도 찾지 못했습니다(중심 적중률 0%, 1장 참고). 아래 모델은 모두 표시 박스가 없는 영상으로 학습·평가했습니다.")
 d(f"RF-DETR-S는 검증·테스트 모두 미탐이 가장 적었고(FN {rf['val']['FN']}·{rf['test']['FN']}) mAP50·mAP50-95도 가장 높았습니다.")
 d(f"테스트 재현율의 세션 단위 95% 신뢰구간은 RF-DETR-S {pct(CI['rfdetr_s']['recall_CI95'][0])}~{pct(CI['rfdetr_s']['recall_CI95'][1])}, YOLO11s {pct(CI['yolo11s']['recall_CI95'][0])}~{pct(CI['yolo11s']['recall_CI95'][1])}, YOLOv8n {pct(CI['yolov8n']['recall_CI95'][0])}~{pct(CI['yolov8n']['recall_CI95'][1])}입니다. 상위 두 모델의 차이는 통계적으로 구분되지 않습니다.")
 d('탐지 모델 3종 모두 이물 중심 적중률이 100%입니다. 놓친 이물은 0개이고, IoU 기준 미탐은 전부 박스 크기 차이에서 나왔습니다(3장).')
-d('비전-언어 모델은 LoRA 학습으로 재현율이 3.8%에서 80.3%(검증)로 올랐지만, 박스 정확도가 낮고 confidence 점수를 내지 않아 임계값 조정이 불가능하며 처리 시간이 탐지 모델의 50배 이상입니다.')
+d('비전-언어 모델은 LoRA 학습으로 재현율이 3.8%에서 80.3%(검증)로 올랐지만, 박스 정확도가 낮고 이물 확신도를 내지 않아 임계값 조정이 불가능하며 처리 시간이 탐지 모델의 50배 이상입니다.')
 o('최종 모델 선택과 이유')
-d('최종 구성: RF-DETR-S + YOLO11s를 영상 단위로 혼용(S1)합니다. 영상마다 두 모델 중 confidence가 높은 모델의 예측을 사용하고, 두 모델의 판단이 엇갈리면 재검사로 보냅니다(4장).')
+d('최종 구성: RF-DETR-S + YOLO11s를 영상 단위로 혼용(S1)합니다. 영상마다 두 모델 중 이물 확신도가 높은 모델의 예측을 사용하고, 두 모델의 판단이 엇갈리면 재검사로 보냅니다(4장).')
 d('RF-DETR-S: 실제 검증·테스트에서 미탐이 가장 적고(FN 5·2), 1장 28ms로 실시간 검사에 쓸 수 있습니다.')
 d('YOLO11s: 원래 대비에서는 RF-DETR-S와 비슷하고, 저대비에서 더 강해 RF-DETR-S의 약점을 보완합니다. 혼용 시 원래 성능은 유지되고 저대비 적중률이 높아졌습니다(표 4).')
 s('YOLOv8n 기준선 대비 개선: 테스트 FN 7 → 2, 정밀도 95.4% → 98.8%. 두 모델 처리 시간 합은 1장 약 45ms입니다.')
@@ -186,14 +187,29 @@ a("""<table><thead><tr><th>가공·조건</th><th>왜 했나</th><th>결과</th>
 <tr><td class=l>전체 결합 (D)</td><td class=l>모든 가공을 합친 효과</td><td class=l>검증 FN 9·8 (두 시드), 적중률 37%·58% (평균 47%)</td><td class=l>미탐이 평균 2.5개 늘었으나 판정 기준(3개) 미만. 저대비 대응력이 가장 낮음</td></tr>
 <tr><td class=l>입력 960px (E)</td><td class=l>작은 이물의 박스 불일치 감소</td><td class=l>검증 FN 9 (B: 5), 작은 이물 FN 10 (B: 7), 학습 2.1배</td><td class=l>개선 없음. 원본이 316~576px라 확대해도 정보가 늘지 않음</td></tr>
 <tr><td class=l>별도 생성 합성 (F)</td><td class=l>다른 방식의 합성 추가 효과</td><td class=l>검증 FN 9, 적중률 66%</td><td class=l>개선 없음</td></tr></tbody></table>""")
-d('정리하면, 원본에서 만든 가공 영상은 실제 검증 영상의 미탐을 줄이지 못했고, 실제 영상만으로 학습한 A가 미탐은 같거나 적으면서 저대비 이물에 가장 강했습니다(k=0.5에서 79%, 전체 결합 D는 두 시드 평균 47%).')
-d('가능한 원인: 이물 제거·합성 영상에는 지운 자리의 희미한 흔적이 "이물 없음"으로 라벨되어 있어, 모델이 희미한 어두운 점을 정상으로 학습했을 수 있습니다. 이는 가설이며 추가 검증이 필요합니다.')
-d('이에 따라 최종 모델은 실제 영상(A 구성)으로 다시 학습하는 것을 권장합니다. 본 보고서의 모델 비교(표 1)는 전체 결합(D 구성)으로 학습한 결과입니다.')
+d('정리하면, YOLOv8n에서는 원본에서 만든 가공 영상이 실제 검증 영상의 미탐을 줄이지 못했고, 실제 영상만으로 학습한 A가 미탐은 같거나 적으면서 저대비 이물에 가장 강했습니다(k=0.5에서 79%, 전체 결합 D는 두 시드 평균 47%).')
+d('가능한 원인(가설): 이물 제거·합성 영상에는 지운 자리의 희미한 흔적이 "이물 없음"으로 라벨되어 있어, 모델이 희미한 어두운 점을 정상으로 학습했을 수 있습니다.')
+d('다만 이 비교는 YOLOv8n 한 모델의 결과이므로, 최종 후보 모델에서도 같은 결과가 나오는지 아래에서 다시 확인했습니다.')
+o('최종 후보 모델에서의 재확인 (A 구성 vs D 구성)')
+d('YOLO11s와 RF-DETR-S를 A 구성(실제 영상 2,220장)으로 다시 학습해, 기존 D 구성(4,372장) 학습 결과와 비교했습니다. 학습 조건은 데이터만 바꾸고 나머지는 같게 했습니다.')
+d('채택 여부는 각 학습 전에 정한 기준으로 검증셋에서 먼저 판정했습니다. 공통 기준은 저대비 k=0.5 적중률이 5%p 이상 오르고, 합성 정상 오경보가 5%p 넘게 늘지 않으며, 미끼 오탐이 없는 것입니다. 미탐 기준은 YOLO11s 단계에서 "검증 FN이 늘지 않을 것", RF-DETR-S 추가 단계에서 "FN 1개 이내 증가는 허용하되 실제로 놓친 이물이 없을 것"으로 두었습니다. 두 단계 모두 기준을 통과하지 못했습니다.')
+d('아래 테스트 결과는 판정이 끝난 뒤 기록용으로 한 번 계산한 값이며, 선택에는 쓰지 않았습니다.')
+AK=[('YOLO11s (D)','YOLO11s','D'),('YOLO11s (A)','YOLO11s','A'),('RF-DETR-S (D)','RF-DETR-S','D'),('RF-DETR-S (A)','RF-DETR-S','A'),('S1: RF-DETR-S(D)+YOLO11s(D) [최종]','혼용 S1','D + D (최종)'),('S1: RF-DETR-S(A)+YOLO11s(A)','혼용 S1','A + A')]
+h='<div class=tcap>표 3-2. 최종 후보 모델의 학습 데이터 구성 비교 (임계값은 검증에서 결정)</div><table><thead><tr><th>모델</th><th>학습 데이터</th><th>검증 FN</th><th>테스트 FN</th><th>검증 재현율</th><th>테스트 재현율</th><th>저대비 k=0.5<br>검증 / 테스트</th><th>합성 정상 오경보<br>검증 / 테스트</th></tr></thead><tbody>'
+for key,mod,dat in AK:
+    r=AD[key]; v=r['val']; te=r['test']
+    h+=f"<tr><td class=l>{mod}</td><td>{dat}</td><td><b>{v['FN']}</b></td><td><b>{te['FN']}</b></td><td>{pct(v['recall'])}</td><td>{pct(te['recall'])}</td><td>{pct(v['k050'],0)} / {pct(te['k050'],0)}</td><td>{pct(v['normal_FA'])} / {pct(te['normal_FA'])}</td></tr>"
+a(h+'</tbody></table>')
+d(f"저대비: A 구성은 두 모델 모두 저대비 적중률을 크게 높였습니다(검증 k=0.5 기준 YOLO11s {pct(AD['YOLO11s (D)']['val']['k050'],0)} → {pct(AD['YOLO11s (A)']['val']['k050'],0)}, RF-DETR-S {pct(AD['RF-DETR-S (D)']['val']['k050'],0)} → {pct(AD['RF-DETR-S (A)']['val']['k050'],0)}). YOLOv8n에서 본 경향이 그대로 재현됐습니다.")
+d(f"실제 영상: 테스트 FN은 A 구성에서 오히려 늘었습니다(YOLO11s {AD['YOLO11s (D)']['test']['FN']} → {AD['YOLO11s (A)']['test']['FN']}, RF-DETR-S {AD['RF-DETR-S (D)']['test']['FN']} → {AD['RF-DETR-S (A)']['test']['FN']}). 혼용 시 검증에서 실제로 놓친 이물이 1개 생겼습니다(3호기, 한 변 8px).")
+d(f"오경보: RF-DETR-S(A)는 합성 정상 영상의 {pct(AD['RF-DETR-S (A)']['val']['normal_FA'],0)}(검증)에 경보를 냈습니다. 경보 46개 중 45개가 원래 이물을 지운 자리에서 나왔습니다. A 구성에는 이물을 지운 영상이 없어, 모델이 지운 흔적 같은 희미한 어두운 점도 이물로 보게 된 것입니다.")
+d('결론: YOLOv8n에서는 A가 유리했지만, 최종 후보 모델에서는 D가 더 안정적이었습니다. A 구성은 저대비 이물에 민감해지는 대신 실제 영상의 미탐과 정상 영상의 오경보가 늘었습니다. 데이터 구성의 효과는 모델 구조에 따라 달랐으며, 최종 모델은 D 구성을 유지했습니다.')
+s('이 결과는 앞서 가설로 둔 원인(이물 제거 영상이 희미한 흔적을 "정상"으로 가르쳐 저대비 대응력을 낮춤)을 뒷받침합니다. 즉 저대비 이물 탐지와 정상 제품 오경보는 서로 맞바꾸는 관계이며, 어느 쪽에 맞출지는 실제 흐린 시험편과 실제 정상 제품으로만 정할 수 있습니다.')
 o('두 모델 혼용(앙상블) 실험')
 d('목적: 원래 대비에서 가장 좋은 RF-DETR-S와 저대비에 강한 YOLO11s를 함께 쓰면 두 장점을 모두 얻을 수 있는지 확인했습니다. 다시 학습하지 않고 저장된 예측을 조합했습니다.')
-d('S1(영상 단위 선택): 영상마다 두 모델의 최고 confidence를 비교해 더 높은 모델의 예측만 사용합니다. S2(박스 단위 선택): 같은 이물(IoU ≥ 0.3)로 겹치는 박스 중 confidence가 높은 박스를 남깁니다. S3: S2와 같되 각 모델 점수를 자기 검증 임계값으로 나눠 비교합니다.')
+d('S1(영상 단위 선택): 영상마다 두 모델의 최고 이물 확신도를 비교해 더 높은 모델의 예측만 사용합니다. S2(박스 단위 선택): 같은 이물(IoU ≥ 0.3)로 겹치는 박스 중 이물 확신도가 높은 박스를 남깁니다. S3: S2와 같되 각 모델의 이물 확신도를 자기 검증 임계값으로 나눠 비교합니다.')
 d('방식과 임계값은 검증셋에서만 정하고, 테스트셋에는 그대로 한 번 적용했습니다.')
-ENN={'rfdetr_s':'RF-DETR-S 단독','yolo11s':'YOLO11s 단독','rfdetr_s+yolo11s|S1':'RF-DETR-S + YOLO11s · S1','rfdetr_s+yolo11s|S2':'RF-DETR-S + YOLO11s · S2','rfdetr_s+yolo11s|S3':'RF-DETR-S + YOLO11s · S3','rfdetr_s+yolov8n|S1':'RF-DETR-S + YOLOv8n · S1','rfdetr_s+yolov8n|S3':'RF-DETR-S + YOLOv8n · S3'}
+ENN={'rfdetr_s':'RF-DETR-S 단독','yolo11s':'YOLO11s 단독','rfdetr_s+yolo11s|S1':'RF-DETR-S + YOLO11s · S1','rfdetr_s+yolo11s|S2':'RF-DETR-S + YOLO11s · S2','rfdetr_s+yolo11s|S3':'RF-DETR-S + YOLO11s · S3'}
 h='<div class=tcap>표 4. 두 모델 혼용 결과 (임계값은 검증에서 결정)</div><table><thead><tr><th>구성</th><th>세트</th><th>FN</th><th>FP</th><th>재현율</th><th>정밀도</th><th>mAP50</th><th>mAP50-95</th><th>정상 오경보</th><th>저대비 k=0.5<br>중심 적중률</th><th>저대비 k=0.35<br>중심 적중률</th></tr></thead><tbody>'
 for k,lab in ENN.items():
     for sp,sl in (('val','검증'),('test','테스트')):
@@ -202,14 +218,17 @@ for k,lab in ENN.items():
 a(h+'</tbody></table>')
 d(f"S1(RF-DETR-S + YOLO11s)은 원래 대비에서 RF-DETR-S 단독과 같은 성능(테스트 FN {ENS['test']['rfdetr_s+yolo11s|S1']['FN']}, 재현율 {pct(ENS['test']['rfdetr_s+yolo11s|S1']['recall'])})을 유지하면서, 대비를 절반으로 낮춘 이물의 중심 적중률을 검증 {pct(ENS['val']['rfdetr_s']['stress']['050'],0)} → {pct(ENS['val']['rfdetr_s+yolo11s|S1']['stress']['050'],0)}, 테스트 {pct(ENS['test']['rfdetr_s']['stress']['050'],0)} → {pct(ENS['test']['rfdetr_s+yolo11s|S1']['stress']['050'],0)}로 높였습니다. 검증에서 본 경향이 테스트에서도 같은 방향으로 확인됐습니다.")
 d('원래 대비의 미탐은 줄지 않았습니다. 남은 미탐은 두 모델 모두 위치는 맞혔으나 박스 크기가 달라 생긴 것이어서, 어느 모델의 박스를 골라도 해결되지 않습니다. 검증 영상 80장 중 71장은 RF-DETR-S의 점수가 더 높아 RF-DETR-S 예측이 쓰였습니다.')
-d('YOLOv8n과의 조합은 이득이 없었고, 점수를 보정한 S3는 오히려 미탐이 늘었습니다(검증 FN 9). 모델별 점수 척도가 달라도 이 데이터에서는 원래 점수 비교(S1)가 가장 좋았습니다.')
+d('S2·S3는 S1과 미탐이 같거나 많고 저대비 적중률이 낮아, 가장 단순한 S1을 선택했습니다.')
+d('YOLOv8n과의 조합도 비교했으나 개선이 없어 최종 후보에서 제외했습니다.')
+s('S1은 영상마다 한 모델의 예측만 쓰므로, 흐린 이물 하나를 다른 모델만 찾았더라도 그 영상에서 이물 확신도가 낮은 쪽이면 버려집니다. 또 이물 확신도 척도가 다른 모델을 넣으면 어느 모델이 선택되는지가 크게 바뀝니다(D 구성 YOLO11s와 조합 시 RF-DETR-S 선택 71/80장, A 구성 YOLO11s와 조합 시 23/80장).')
 s('검증 결과는 같은 데이터에서 방식을 고르고 평가한 값이라 낙관적일 수 있습니다. 저대비 평가는 평가 전용 합성 영상 기준입니다.')
 
 # ---------------- CH3 ----------------
 a('<h2 class=chap>□ 제3장. 영향요인 및 오류분석</h2>')
-o('미탐의 원인: 박스 크기 불일치')
-a('<table><thead><tr><th>모델</th><th>박스 불일치<br>(이물 위 예측, IoU 0.1~0.5)</th><th>점수 미달</th><th>후보 없음</th><th>이물 중심 적중률</th></tr></thead><tbody>' + ''.join(f"<tr><td class=l>{N[k]}</td><td>{S1[k]['val_fn_types']['box_mismatch']} / {S1[k]['test_fn_types']['box_mismatch']}</td><td>{S1[k]['val_fn_types']['below_threshold']} / {S1[k]['test_fn_types']['below_threshold']}</td><td>{S1[k]['val_fn_types']['no_candidate']} / {S1[k]['test_fn_types']['no_candidate']}</td><td>{pct(S1[k]['val_center_recall'])} / {pct(S1[k]['test_center_recall'])}</td></tr>" for k in ('rfdetr_s','yolo11s','yolov8n','qwen25vl3b_lora')) + '</tbody></table><div class=cap>값은 검증 / 테스트</div>')
-d('탐지 모델의 미탐은 모두 이물 위에 박스를 그렸지만 IoU가 0.31~0.50에 그친 경우입니다. 정답 박스가 유난히 작거나(한 변 5~8px) 크거나 길쭉한(한 변 11px 이상) 이물에서, 모델은 학습 라벨의 대표 크기인 약 10px 박스를 그렸습니다.')
+o('IoU 기준 미탐(FN)의 원인 분석')
+d('여기서 미탐(FN)은 이물 위치를 전혀 찾지 못했다는 뜻이 아니라, 예측 박스와 정답 박스의 겹침 정도(IoU)가 0.5 미만이어서 평가상 미탐으로 집계된 경우를 포함합니다.')
+a('<table><thead><tr><th>모델</th><th>박스 불일치<br>(이물 위 예측, IoU 0.1~0.5)</th><th>확신도 미달</th><th>후보 없음</th><th>이물 중심 적중률</th></tr></thead><tbody>' + ''.join(f"<tr><td class=l>{N[k]}</td><td>{S1[k]['val_fn_types']['box_mismatch']} / {S1[k]['test_fn_types']['box_mismatch']}</td><td>{S1[k]['val_fn_types']['below_threshold']} / {S1[k]['test_fn_types']['below_threshold']}</td><td>{S1[k]['val_fn_types']['no_candidate']} / {S1[k]['test_fn_types']['no_candidate']}</td><td>{pct(S1[k]['val_center_recall'])} / {pct(S1[k]['test_center_recall'])}</td></tr>" for k in ('rfdetr_s','yolo11s','yolov8n','qwen25vl3b_lora')) + '</tbody></table><div class=cap>값은 검증 / 테스트</div>')
+d('탐지 모델에서 발생한 FN은 모두 이물 위치에는 예측이 있었으나, 정답 박스와 예측 박스의 크기 차이로 IoU가 0.31~0.50에 그친 사례였습니다. 정답 박스가 유난히 작거나(한 변 5~8px) 크거나 길쭉한(한 변 11px 이상) 이물에서, 모델은 학습 라벨의 대표 크기인 약 10px 박스를 그렸습니다.')
 d('따라서 임계값을 낮춰도 미탐이 줄지 않고, 제품 단위 판정(보류 여부)에서는 놓친 제품이 없습니다.')
 a(f'<figure>{F("f8_fn_gallery.png")}<figcaption>그림 8. RF-DETR-S·YOLO11s의 미탐 전체 (초록 = 정답, 빨강 = 예측)</figcaption></figure>')
 o('조건별 미탐 (검증+테스트 이물 355개)')
@@ -224,7 +243,7 @@ d('검증·테스트 실제 이물의 배경 대비를 k배(0.75, 0.5, 0.35, 0.2
 a(f'<figure>{F("f7_stress.png")}<figcaption>그림 10. 이물 대비를 낮췄을 때의 탐지율 (실선 검증, 점선 테스트)</figcaption></figure>')
 d(f"k = 0.75까지는 세 모델 모두 이물 중심 적중률 93% 이상을 유지하지만, k = 0.5에서 RF-DETR-S {pct(st('rfdetr_s','val',0.5),0)}·YOLO11s {pct(st('yolo11s','val',0.5),0)}·YOLOv8n {pct(st('yolov8n','val',0.5),0)}(검증)로 떨어지고, k = 0.35에서는 절반 이상을 놓칩니다.")
 d('원래 대비에서 가장 좋은 RF-DETR-S보다 YOLO11s가 저대비에서 더 강합니다. 이 결과가 두 모델을 함께 쓰는 근거이며, 실제로 혼용(S1) 시 저대비 적중률이 단일 모델보다 높았습니다(표 4). 합성 조건이므로 실제 흐릿한 이물의 탐지율로 해석하지 않습니다.')
-d('학습 데이터 조합 비교(표 3)에서 같은 평가를 하면, 실제 영상만으로 학습한 모델이 저대비에 가장 강했습니다. 저대비 취약성의 일부는 모델 구조가 아니라 가공 학습 데이터에서 온 것으로 보입니다.')
+d('학습 데이터 구성 비교(표 3, 표 3-2)에서는 실제 영상만으로 학습한 모델(A)이 저대비에 가장 강했지만, 이물을 지운 흔적에도 경보를 내 합성 정상 오경보가 크게 늘었습니다. 저대비 취약성의 일부는 모델 구조가 아니라 학습 데이터 구성에서 온 것이며, 오경보와 맞바꾸는 관계입니다.')
 o('오탐 분석')
 d('오탐은 대부분 박스 불일치로 생긴 같은 이물의 중복 집계입니다. 이물이 없는 곳의 오탐은 세 모델 합쳐 1건(YOLOv8n 테스트), 라벨 누락 이물을 찾은 경우가 각 모델 1건입니다.')
 d('미끼 박스(복원 흔적)에 반응한 오탐은 모든 탐지 모델에서 0건으로, 모델이 장비 표시 흔적에 의존하지 않음을 확인했습니다.')
@@ -239,13 +258,14 @@ o('표시 박스 없이 동작하는 독립 판정기')
 d('최종 모델은 장비 표시가 그려지기 전의 X선 영상만 보고 판정합니다. 따라서 기존 검사 장비의 판정을 따라 하는 것이 아니라, 같은 영상을 독립적으로 한 번 더 검사하는 2차 판정기로 쓸 수 있습니다.')
 d('기존 장비와 모델의 판정이 다르면 재검사 대상으로 분류해, 장비 알고리즘이 놓친 이물과 모델이 놓친 이물을 서로 보완합니다.')
 o('PASS / RE-INSPECTION / REJECT 3단계 판정')
+d('아래 표의 이물 확신도(confidence score)는 모델이 검출한 후보를 이물이라고 판단하는 정도를 0~1로 나타낸 값이며, 값이 클수록 이물일 가능성을 높게 판단한 것입니다. "최고 이물 확신도"는 한 영상에서 나온 후보 중 가장 높은 값입니다.')
 a(f"""<table><thead><tr><th>판정</th><th>조건 (검사 시점에 관찰 가능한 정보만 사용)</th><th>조치</th></tr></thead><tbody>
-<tr><td><b>REJECT</b></td><td class=l>RF-DETR-S 최고 점수 ≥ {TH['rfdetr_s']:.3f} 이고 YOLO11s 최고 점수 ≥ {TH['yolo11s']:.3f}</td><td class=l>제품 보류·격리. 재촬영에서 안 보여도 자동 취소하지 않음</td></tr>
-<tr><td><b>RE-INSPECTION</b></td><td class=l>두 모델 중 하나만 확정선을 넘음(판단 불일치), 또는 한 모델이라도 재검사 하한(RF-DETR-S {TL['rfdetr_s']:.2f}, YOLO11s {TL['yolo11s']:.2f}) 이상</td><td class=l>새로 X선 재촬영 또는 작업자 판독. 같은 영상을 확대해 다시 추론하는 것은 재검사로 보지 않음</td></tr>
-<tr><td><b>PASS</b></td><td class=l>두 모델 모두 재검사 하한 미만</td><td class=l>통과</td></tr></tbody></table>""")
+<tr><td><b>REJECT</b></td><td class=l>RF-DETR-S 최고 이물 확신도 ≥ {TH['rfdetr_s']:.3f} 이고 YOLO11s 최고 이물 확신도 ≥ {TH['yolo11s']:.3f}</td><td class=l>제품 보류·격리. 재촬영에서 안 보여도 자동 취소하지 않음</td></tr>
+<tr><td><b>RE-INSPECTION</b></td><td class=l>두 모델 중 하나만 확정선을 넘음(판단 불일치), 또는 한 모델이라도 최고 이물 확신도가 재검사 하한(RF-DETR-S {TL['rfdetr_s']:.2f}, YOLO11s {TL['yolo11s']:.2f}) 이상</td><td class=l>새로 X선 재촬영 또는 작업자 판독. 같은 영상을 확대해 다시 추론하는 것은 재검사로 보지 않음</td></tr>
+<tr><td><b>PASS</b></td><td class=l>두 모델 모두 최고 이물 확신도가 재검사 하한 미만</td><td class=l>통과</td></tr></tbody></table>""")
 s('"작은 이물이면 재검사"처럼 모델이 놓치면 알 수 없는 정보는 기준으로 쓰지 않았습니다.')
 s('영상 품질 이상(촬영 실패, 포화, 기준 시험편 이탈)은 모델 판정 전에 보류·재촬영합니다.')
-s('REJECT 판정의 점수는 혼용 방식(S1)에 따라 두 모델 중 높은 confidence를 사용합니다. 아래 결과는 이 규칙과 동일합니다.')
+s('REJECT 판정에는 혼용 방식(S1)에 따라 두 모델 중 높은 이물 확신도를 사용합니다. 아래 결과는 이 규칙과 동일합니다.')
 o('판정 결과 (영상 단위)')
 a('<table><thead><tr><th rowspan=2>판정 방식</th><th rowspan=2>세트</th><th colspan=3>이물 있는 영상 (80장)</th><th colspan=3>합성 정상 영상 (80장)</th></tr><tr><th>REJECT</th><th>RE-INSP.</th><th>PASS(놓침)</th><th>REJECT</th><th>RE-INSP.</th><th>PASS</th></tr></thead><tbody>' + pol_rows() + '</tbody></table>')
 d('세 방식 모두 이물 있는 영상 160장을 모두 REJECT로 판정해 놓친 제품이 없었습니다.')
@@ -263,10 +283,13 @@ d('다른 비전검사 장비나 제품은 영상 크기·밝기·이물 형태�
 d('장비가 판정 표시를 영상에 덧그려 저장하는 경우에는 본 팀의 표시 제거·미끼 박스 전처리를 그대로 적용해, 모델이 장비 표시를 따라 하지 않는지 먼저 점검할 수 있습니다.')
 d('재검사 하한·확정선 같은 판정 기준은 현장 품질 담당자와 목표 탐지율·허용 재검사율을 정한 뒤 확정합니다.')
 o('현장 도입 전 검증 계획')
-d('목표 탐지율과 허용 재검사율을 먼저 정하고, 실제 흐릿한 시험편과 정상 제품을 독립 촬영해 확인합니다.')
-a("""<table><thead><tr><th>목표 탐지율 (95% 신뢰하한)</th><th>미탐 0개일 때 필요 표본</th><th>미탐 1개</th><th>미탐 2개</th></tr></thead><tbody>
+d('현재 평가 데이터는 같은 시험편을 반복 촬영한 영상이 많고 실제 정상 제품 영상도 포함되어 있지 않습니다. 따라서 현재 성능을 실제 생산라인 성능으로 그대로 해석할 수 없습니다.')
+d('현장 적용 전에는 학습에 사용하지 않은 새로운 시험편과 실제 정상 제품을 별도로 촬영하여, ① 실제 이물을 얼마나 놓치지 않는지, ② 정상 제품을 얼마나 자주 재검사로 보내는지를 다시 확인해야 합니다.')
+d('예를 들어 실제 이물 299개를 독립적으로 검사해 한 건도 놓치지 않는다면 95% 신뢰수준에서 탐지율 99% 이상이라는 근거를 확보할 수 있습니다. 같은 시험편의 반복 촬영이나 증강 영상은 독립 표본으로 계산하지 않습니다.')
+a('<div class=tcap>표 5. 목표 탐지율을 확인하기 위해 필요한 독립 시험 수</div>')
+a("""<table><thead><tr><th>확인하려는 탐지율</th><th>한 건도 놓치지 않을 때</th><th>1건 놓칠 때</th><th>2건 놓칠 때</th></tr></thead><tbody>
 <tr><td>90%</td><td>29</td><td>46</td><td>61</td></tr><tr><td>95%</td><td>59</td><td>93</td><td>124</td></tr><tr><td>99%</td><td>299</td><td>473</td><td>628</td></tr></tbody></table>""")
-s('정확 이항(Clopper–Pearson) 단측 95% 기준. 같은 시험편의 반복 촬영·증강본은 독립 표본으로 세지 않습니다. 정상 제품 재검사율 상한 5%·1%를 보이려면 각각 59·299개가 필요합니다.')
+s('95% 신뢰수준 기준(정확 이항 계산). 정상 제품도 같은 방식으로, 재검사 비율이 5% 이하·1% 이하임을 보이려면 각각 59개·299개의 정상 제품을 한 건도 재검사로 보내지 않아야 합니다.')
 # ---------------- CH5 ----------------
 a('<h2 class=chap>□ 제5장. 창의성 및 차별성</h2>')
 o('핵심 차별점: 표시 박스가 없는 영상에서도 이물 판별')
@@ -286,13 +309,13 @@ a('''<table><thead><tr><th style="width:16%">항목</th><th style="width:38%">KA
 o('누출 없는 평가 설계')
 d('원본 해시·촬영 세션·촬영 간격·이물 배치까지 점검해 학습과 평가 영상 사이의 직접 유출이 없음을 확인했고, 같은 시험편 반복이라는 구조적 한계를 수치(86%)로 밝혔습니다.')
 o('미탐을 원인별로 분해한 평가')
-d('IoU 기준 미탐을 박스 불일치·점수 미달·후보 없음으로 나눠, 남은 미탐이 위치를 놓친 것이 아니라 박스 크기 차이임을 보였습니다(중심 적중률 100%). 이 결과로 임계값을 낮추는 대신 재검사 기준을 설계했습니다.')
+d('IoU 기준 미탐을 박스 불일치·확신도 미달·후보 없음으로 나눠, 남은 미탐이 위치를 놓친 것이 아니라 박스 크기 차이임을 보였습니다(중심 적중률 100%). 이 결과로 임계값을 낮추는 대신 재검사 기준을 설계했습니다.')
 o('저대비 스트레스 평가로 모델 조합 근거 확보')
 d('실제 데이터의 평균 성능만으로는 보이지 않던 차이(저대비에서 YOLO11s 우세)를 평가 전용 합성으로 드러내, 구조가 다른 두 모델의 판단 불일치를 재검사 신호로 쓰는 근거로 삼았습니다.')
 o('약점이 다른 두 모델의 혼용')
-d('평균 성능이 비슷한 두 모델의 조건별 강점(원래 대비 vs 저대비)을 찾아, 높은 confidence를 낸 모델을 쓰는 간단한 규칙만으로 원래 성능을 유지하면서 저대비 대응력을 높였습니다(테스트 k=0.5 적중률 84% → 90%).')
+d('평균 성능이 비슷한 두 모델의 조건별 강점(원래 대비 vs 저대비)을 찾아, 이물 확신도가 높은 모델을 쓰는 간단한 규칙만으로 원래 성능을 유지하면서 저대비 대응력을 높였습니다(테스트 k=0.5 적중률 84% → 90%).')
 o('가공 데이터 효과의 사전 기준 검증')
-d('합성·제거 영상을 "많을수록 좋다"고 가정하지 않고, 실험 전 판정 기준과 반복 학습으로 효과를 확인했습니다. 그 결과 가공 데이터가 저대비 대응력을 낮춘다는 위험을 찾아 학습 데이터 구성 권고로 연결했습니다.')
+d('합성·제거 영상을 "많을수록 좋다"고 가정하지 않고, 실험 전 판정 기준과 반복 학습으로 효과를 확인했습니다. 그 결과 가공 데이터가 저대비 대응력을 낮추는 대신 오경보를 줄인다는 맞바꿈 관계를 찾았고, 최종 후보 모델로 다시 학습해 이를 확인했습니다(표 3-2).')
 o('라벨 품질 감사')
 d('장비 표시 모양을 전수 분류해 T 아이콘 라벨 6장, 합쳐진 박스 25장을 찾아 제외하고, 검증 라벨 누락 1건을 찾아 오탐 해석에 반영했습니다.')
 # ---------------- CH6 ----------------
@@ -313,14 +336,19 @@ a("""<pre>kamp_ai/
 │  │   ├─ yolo_run.py, rfdetr_run.py, vlm_run.py   학습·예측
 │  │   ├─ evaluate.py               공통 채점 (검증 임계값을 테스트에 고정 적용)
 │  │   ├─ ensemble_val.py, ensemble_test.py   두 모델 혼용(검증 결정 → 테스트 1회)
+│  │   ├─ yolo11s_A_run.py, rfdetr_A_run.py   최종 후보 모델 A 구성 재학습
+│  │   ├─ compare_A_val.py, compare_A2_val.py  A 구성 채택 판정(검증 전용)
+│  │   ├─ a_vs_d_report.py           A·D 구성 비교표(판정 후 기록용)
 │  │   └─ report_analysis.py, report_figs.py, leak_check.py         분석·그림
 │  ├─ preds/                        모델별 예측 CSV · 채점 JSON · 메타
 │  └─ report/                       보고서 생성 코드·그림·분석 JSON</pre>""")
 o('실행 순서')
 a("""<pre># 1) 학습·예측·채점 (맥 MPS)
 bash X-ray_실험/run_all.sh
-# 2) 학습 데이터 조합 비교
+# 2) 학습 데이터 조합 비교 + 최종 후보 모델 A 구성 재확인
 bash X-ray_실험/phase2.sh
+bash X-ray_실험/yolo11s_A.sh && bash X-ray_실험/rfdetr_A.sh
+python scripts/a_vs_d_report.py
 # 3) 단일 모델 채점
 python scripts/evaluate.py preds/rfdetr_s.csv --out preds/rfdetr_s_eval.json
 # 4) 보고서 분석·그림
@@ -334,7 +362,7 @@ d('표시 박스가 그려지기 전의 실제 원본 영상이 없어, 표시�
 d('같은 시험편 반복 촬영 데이터라 처음 보는 제품에 대한 성능은 검증하지 못했습니다.')
 d('실제 정상 제품이 없어 실제 오경보율을 측정하지 못했고, 가장자리 이물은 평가셋에 없습니다.')
 d('평가 표본이 각 80장(16·22세션)으로 작아 상위 모델 간 차이는 통계적으로 구분되지 않습니다.')
-d('실제 영상 중심 구성(표 3의 A·C)으로 최종 모델을 다시 학습해 표 1과 비교하는 작업이 남아 있습니다.')
+d('저대비 이물 탐지와 정상 제품 오경보의 균형점(학습 데이터 구성, 박스 단위 결합 방식)은 실제 흐린 시험편과 실제 정상 제품으로 다시 정해야 합니다.')
 # ---------------- APPENDIX ----------------
 a('<h2 class=chap>□ 부록 A. 모델별 상세 분석 자료</h2>')
 for k in ['rfdetr_s','yolo11s','yolov8n','yolov8n_4403장']:
@@ -346,7 +374,7 @@ for k in ['rfdetr_s','yolo11s','yolov8n','yolov8n_4403장']:
     a('<div class=tcap>미탐 유형</div>' + fnt_table(k))
 for k in ['qwen25vl3b_lora','qwen25vl3b_zeroshot']:
     a(f'<div class=o>◦ {N[k]}</div>')
-    a('<div class=tcap>성능 (점수를 내지 않아 임계값 분석 없음)</div>' + main_table([k]))
+    a('<div class=tcap>성능 (이물 확신도를 내지 않아 임계값 분석 없음)</div>' + main_table([k]))
     a('<div class=tcap>호기별 미탐</div>' + hogi_table(k))
     a('<div class=tcap>미탐 유형</div>' + fnt_table(k))
 a(f'<figure>{F("f9_vlm.png")}<figcaption>그림 A1. 비전-언어 모델 예측 비교 (초록 = 정답, 빨강 = 예측)</figcaption></figure>')

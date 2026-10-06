@@ -1,0 +1,8 @@
+{
+ "model": "yolo11s_A",
+ "yaml": "/Users/kyungrae/Desktop/kamp_ai/X-ray_실험/ablation/A_실제만.yaml",
+ "train_images": 2220,
+ "train_seconds": 4108.389057159424,
+ "epochs_requested": 70,
+ "ms_per_image_mps_batch1": 9.415351776849656
+}
