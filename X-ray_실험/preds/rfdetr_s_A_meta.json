@@ -1,0 +1,8 @@
+{
+ "model": "RF-DETR-S (A)",
+ "checkpoint": "checkpoint_best_total.pth",
+ "train_images": 2220,
+ "train_seconds": 5208.717703104019,
+ "epochs_requested": 15,
+ "ms_per_image_mps_batch1": 28.04502835349431
+}
